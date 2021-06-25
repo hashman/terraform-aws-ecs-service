@@ -76,7 +76,7 @@ resource "aws_ecs_service" "service_alb" {
   launch_type = var.launch_type
 
   dynamic "network_configuration" {
-    for_each = var.launch_type == "FARGATE" ? list(var.launch_type) : []
+    for_each = var.launch_type == "FARGATE" ? tolist([var.launch_type]) : []
     content {
       security_groups = var.awsvpc_service_security_groups
       subnets         = var.awsvpc_service_subnetids

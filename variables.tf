@@ -283,16 +283,6 @@ variable "health_check" {
   default     = {}
 }
 
-variable "lb_listener_rule_condition" {
-  description = "The condition for the LB listener rule which is created when `enable_load_balanced` is set."
-  type        = map(string)
-
-  default = {
-    field  = "path-pattern"
-    values = "/*"
-  }
-}
-
 variable "ecs_services_dependencies" {
   description = "A list of arns can be provided to which the creation of the ecs service is depended."
   type        = list(string)
