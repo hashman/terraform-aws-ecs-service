@@ -29,7 +29,7 @@ resource "aws_ecs_task_definition" "task" {
 
   cpu                      = var.launch_type == "FARGATE" ? var.container_cpu : null
   memory                   = var.launch_type == "FARGATE" ? var.container_memory : null
-  execution_role_arn       = var.launch_type == "FARGATE" ? aws_iam_role.ecs_tasks_execution_role[0].arn : null
+  execution_role_arn       = var.launch_type == "FARGATE" ? var.ecs_task_execution_role_arn : null
   requires_compatibilities = [var.launch_type]
 
   container_definitions = data.template_file.docker-template.rendered

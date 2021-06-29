@@ -109,6 +109,11 @@ variable "alb_port" {
   default     = 443
 }
 
+variable "ecs_task_execution_role_arn" {
+  type    = string
+  default = ""
+}
+
 variable "alb_certificate_arn" {
   description = "The AWS certificate ARN, required for an ALB via HTTPS. The certificate should be available in the same zone."
   type        = string
