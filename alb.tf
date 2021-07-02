@@ -18,6 +18,13 @@ resource "aws_security_group" "security_group_alb" {
     cidr_blocks = [var.internal_alb ? data.aws_vpc.selected[0].cidr_block : "0.0.0.0/0"]
   }
 
+  ingress {
+    from_port   = var.alb_container_port
+    to_port     = var.alb_container_port
+    protocol    = "tcp"
+    cidr_blocks = [var.internal_alb ? data.aws_vpc.selected[0].cidr_block : "0.0.0.0/0"]
+  }
+
   # allow all outgoing traffic
   egress {
     from_port   = 0
