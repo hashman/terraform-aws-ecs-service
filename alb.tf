@@ -151,9 +151,11 @@ resource "aws_lb_listener_rule" "default" {
     target_group_arn = aws_alb_target_group.target_group[0].arn
   }
 
-  condition {
-    path_pattern {
-      values = ["/*"]
+  dynamic "condition" {
+    for_each = [var.lb_listener_rule_condition]
+    content {
+      field  = condition.value["field"]
+      values = list(condition.value["values"])
     }
   }
 }
